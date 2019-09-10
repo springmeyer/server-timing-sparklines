@@ -14,4 +14,14 @@ Visualize server-timing headers as sparklines.
 ## Usage
 
 
-./viz "http://server-which-supports-server-timing-headers.org"
+```
+$ ./viz https://www.bbc.co.uk/iplayer
+
+data  : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 59.28
+markup: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 73.60
+total : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 142.84
+```
+
+## See also
+
+- https://medium.com/bbc-design-engineering/server-timing-in-the-wild-bfb34816322e
