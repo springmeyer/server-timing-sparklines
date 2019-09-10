@@ -9,7 +9,7 @@ if ! command -v "termgraph" > /dev/null; then
   exit 1
 fi
 
-function go() {
+function query() {
   local CURL_RESULT=0
   local HTTP_RETURN=0
   DATA=$(curl -w "%{http_code}" -ISfs "${1}") || CURL_RESULT=$?
@@ -24,5 +24,43 @@ function go() {
   fi
 }
 
-go "$@"
+function loop() {
+  local GO=true
+  while $GO; do
+    sleep .4
+    query "$@"
+  done
+}
+
+function usage() {
+  >&2 echo "Usage for viz:"
+  >&2 echo ""
+  >&2 echo "$ viz [url]"
+  >&2 echo ""
+  >&2 echo "Options are:"
+  >&2 echo ""
+  >&2 echo " --loop (run continuously)"
+  exit 1
+}
+
+# https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
+for i in "$@"
+do
+case $i in
+    -h | --help)
+    usage
+    ;;
+    --loop)
+    shift
+    loop "$@"
+    ;;
+    *)
+    if [[ -z ${1:-} ]]; then
+      usage
+    fi
+    query "$@"
+    ;;
+esac
+done
+
 

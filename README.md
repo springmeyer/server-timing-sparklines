@@ -24,4 +24,6 @@ total : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
 
 ## See also
 
+- https://w3c.github.io/server-timing/#introduction
 - https://medium.com/bbc-design-engineering/server-timing-in-the-wild-bfb34816322e
+- https://calendar.perfplanet.com/2018/server-timing/
