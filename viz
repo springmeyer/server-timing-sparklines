@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+
+set -eu
+set -o pipefail
+shopt -s nocasematch
+
+if ! command -v "termgraph" > /dev/null; then
+  echo "Error: Could not find required command 'termgraph'"
+  exit 1
+fi
+
+function go() {
+  local CURL_RESULT=0
+  local HTTP_RETURN=0
+  DATA=$(curl -w "%{http_code}" -ISfs "${1}") || CURL_RESULT=$?
+  if [[ ${CURL_RESULT} != 0 ]]; then
+      echo "Failed to call server, got ${DATA} (error code: ${HTTP_RETURN})"
+      exit $CURL_RESULT
+  elif [[ ! ${DATA} =~ "Server-Timing" ]]; then
+      echo "Could not detect server-timing headers"
+      exit 1
+  else
+      echo "${DATA}" | ./parse.py | termgraph
+  fi
+}
+
+go "$@"
+
