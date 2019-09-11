@@ -11,16 +11,16 @@ fi
 
 function query() {
   local CURL_RESULT=0
-  local HTTP_RETURN=0
-  DATA=$(curl -w "%{http_code}" -ISfs "${1}") || CURL_RESULT=$?
+  CURL_TIMINGS=$(curl -o /dev/null -D /tmp/springmeyer-viz.log -k -H 'Cache-Control: no-cache' -L -w 'dns-lookup %{time_namelookup}|tls-handshake %{time_appconnect}|ttfb %{time_starttransfer}' -Sfs "${1}") || CURL_RESULT=$?
+  DATA=$(cat /tmp/springmeyer-viz.log)
   if [[ ${CURL_RESULT} != 0 ]]; then
-      echo "Failed to call server, got ${DATA} (error code: ${HTTP_RETURN})"
+      echo "Failed to call server, got ${DATA}"
       exit $CURL_RESULT
   elif [[ ! ${DATA} =~ "Server-Timing" ]]; then
       echo "Could not detect server-timing headers"
       exit 1
   else
-      echo "${DATA}" | ./parse.py | termgraph
+      ( (echo $CURL_TIMINGS | tr "|" "\n" | ./convert.py) && (echo "${DATA}" | ./parse.py) ) | termgraph
   fi
 }
 

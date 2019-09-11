@@ -28,3 +28,4 @@ total : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
 - https://medium.com/bbc-design-engineering/server-timing-in-the-wild-bfb34816322e
 - https://calendar.perfplanet.com/2018/server-timing
 - https://github.com/benbria/node-servertime
+- https://blog.cloudflare.com/a-question-of-timing
