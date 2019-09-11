@@ -41,9 +41,13 @@ function usage() {
   >&2 echo ""
   >&2 echo "Options are:"
   >&2 echo ""
-  >&2 echo " --loop (run continuously)"
+  >&2 echo " --loop (run continuously). Example: viz --loop [url]"
   exit 1
 }
+
+if [[ -z "$@" ]]; then
+  usage
+fi
 
 # https://stackoverflow.com/questions/192249/how-do-i-parse-command-line-arguments-in-bash
 for i in "$@"

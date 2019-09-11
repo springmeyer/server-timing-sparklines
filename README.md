@@ -10,6 +10,13 @@ Visualize [ttfb](https://en.wikipedia.org/wiki/Time_to_first_byte) + [server-tim
  - Termgraph (pip install termgraph)
  - A server that provides server timing headers in the http response
 
+## Install
+
+```
+git clone git@github.com:springmeyer/server-timing-sparklines.git
+cd server-timing-sparklines
+./viz -h
+```
 
 ## Usage
 
