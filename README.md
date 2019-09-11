@@ -1,6 +1,6 @@
 ## Server Sparklines
 
-Visualize server-timing headers as sparklines.
+Visualize ttfb + server-timing headers as sparklines.
 
 
 ## Depends
@@ -17,9 +17,14 @@ Visualize server-timing headers as sparklines.
 ```
 $ ./viz https://www.bbc.co.uk/iplayer
 
-data  : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 59.28
-markup: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 73.60
-total : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 142.84
+client:dns-lookup   : ▇▇▇▇▇▇▇▇▇ 515.02
+client:tls-handshake: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1249.60
+client:ttfb         : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 1786.07
+data                : ▇ 99.34
+markup              : ▇ 78.96
+total               : ▇▇▇ 186.41
+overall             : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 2611.00
+
 ```
 
 ## See also
