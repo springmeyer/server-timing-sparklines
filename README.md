@@ -1,6 +1,6 @@
 ## Server Sparklines
 
-Visualize ttfb + server-timing headers as sparklines.
+Visualize [ttfb](https://en.wikipedia.org/wiki/Time_to_first_byte) + [server-timing headers](https://w3c.github.io/server-timing/#introduction) as [sparklines](https://en.wikipedia.org/wiki/Sparkline)
 
 
 ## Depends
@@ -13,6 +13,17 @@ Visualize ttfb + server-timing headers as sparklines.
 
 ## Usage
 
+The `viz` command accepts a single argument of a URL to download
+
+The `viz` command outputs:
+
+ - The curl client timing for DNS lookup, TLS handshake, and Time To First Byte.
+ - The Server-Timing headers provided by the backend
+ - The overall time it took to initiate the request and download the response
+
+Optionally pass `viz --loop [url]` to repeat the request in a loop indefinetly (ctrl-c to exit). This can be valuable to watch how the timing results change as you might put load on the backend load testing.
+
+Example:
 
 ```
 $ ./viz https://www.bbc.co.uk/iplayer
