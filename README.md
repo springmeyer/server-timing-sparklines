@@ -52,3 +52,4 @@ overall             : ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇�
 - https://calendar.perfplanet.com/2018/server-timing
 - https://github.com/benbria/node-servertime
 - https://blog.cloudflare.com/a-question-of-timing
+- https://developers.google.com/web/fundamentals/performance/navigation-and-resource-timing/
