@@ -22,7 +22,10 @@ function query() {
       echo "Could not detect server-timing headers"
       exit 1
   else
-      ( (echo $CURL_TIMINGS | tr "|" "\n" | ./convert.py) && (echo "${DATA}" | ./parse.py) && (echo "overall ${ELAPSED}" )) | termgraph
+      echo $CURL_TIMINGS | tr "|" "\n" | ./convert.py > /tmp/springmeyer-viz.data
+      echo "${DATA}" | ./parse.py >> /tmp/springmeyer-viz.data
+      echo "overall ${ELAPSED}" >> /tmp/springmeyer-viz.data
+      termgraph < /tmp/springmeyer-viz.data
   fi
 }
 
