@@ -14,6 +14,7 @@ function query() {
   local CURL_RESULT=0
   NOW=$(date +%s%N)
   CURL_TIMINGS=$(curl -o /dev/null -D /tmp/springmeyer-viz.log -k -H 'Cache-Control: no-cache' -L -w 'client:dns-lookup %{time_namelookup}|client:tls-handshake %{time_appconnect}|client:ttfb %{time_starttransfer}' -Sfs "${1}") || CURL_RESULT=$?
+  ELAPSED=$((($(date +%s%N) - ${NOW})/1000000))
   DATA=$(cat /tmp/springmeyer-viz.log)
   if [[ ${CURL_RESULT} != 0 ]]; then
       echo "Failed to call server, got ${DATA}"
@@ -22,7 +23,7 @@ function query() {
       echo "Could not detect server-timing headers"
       exit 1
   else
-      ( (echo $CURL_TIMINGS | tr "|" "\n" | ./convert.py) && (echo "${DATA}" | ./parse.py) ) | termgraph
+      ( (echo $CURL_TIMINGS | tr "|" "\n" | ./convert.py) && (echo "${DATA}" | ./parse.py) && (echo "overall ${ELAPSED}" )) | termgraph
   fi
 }
 
