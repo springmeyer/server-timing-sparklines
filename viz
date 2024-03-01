@@ -12,9 +12,9 @@ fi
 
 function query() {
   local CURL_RESULT=0
-  NOW=$(python -c 'from time import time; print int(round(time() * 1000))')
+  NOW=$(python -c 'from time import time; print(int(round(time() * 1000)))')
   CURL_TIMINGS=$(curl -o /dev/null -D /tmp/springmeyer-viz.log -k -H 'Cache-Control: no-cache' -L -w 'client:dns-lookup %{time_namelookup}|client:tls-handshake %{time_appconnect}|client:ttfb %{time_starttransfer}' -Sfs "${1}") || CURL_RESULT=$?
-  ELAPSED=$((($(python -c 'from time import time; print int(round(time() * 1000))') - ${NOW})))
+  ELAPSED=$((($(python -c 'from time import time; print(int(round(time() * 1000)))') - ${NOW})))
   DATA=$(cat /tmp/springmeyer-viz.log)
   if [[ ${CURL_RESULT} != 0 ]]; then
       echo "Failed to call server, got ${DATA}"

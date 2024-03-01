@@ -6,15 +6,16 @@ Visualize [ttfb](https://en.wikipedia.org/wiki/Time_to_first_byte) + [server-tim
 ## Depends
 
  - Curl
- - Python 2 or 3
- - Termgraph (pip install termgraph)
- - A server that provides server timing headers in the http response
+ - Python 3
+ - Termgraph
+
 
 ## Install
 
 ```
 git clone git@github.com:springmeyer/server-timing-sparklines.git
 cd server-timing-sparklines
+pip install -r requirements.txt
 ./viz -h
 ```
 
